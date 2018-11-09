@@ -2,6 +2,7 @@ package com.cultivation.javaBasic;
 
 import org.junit.jupiter.api.Test;
 
+import java.sql.Array;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -18,9 +19,12 @@ class StringTest {
         //
         // It is really easy to pass the test. But you have to tell why.
         // <--start
-        final Optional<Boolean> areSame = Optional.empty();
+        final Optional<Boolean> areSame = Optional.of(false);
         // --end-->
-
+        /*
+        * the old string "The original string" will not replaced by the new one, but will be saved in somewhere
+        * so the statement is false
+        */
         assertEquals("The new string", modifiedString);
         assertEquals(areSame.get(), originalString == modifiedString);
     }
@@ -35,8 +39,12 @@ class StringTest {
         //
         // It is really easy to pass the test. But you have to tell why.
         // <--start
-        final Optional<Boolean> areSame = Optional.empty();
+        final Optional<Boolean> areSame = Optional.of(false);
         // --end-->
+        /*
+         * Spacing at the end will be kept
+         * so the statement is false
+         */
 
         assertEquals("The string with tailing space.", modifiedString);
         assertEquals(areSame.get(), originalString == modifiedString);
@@ -53,8 +61,13 @@ class StringTest {
         //
         // It is really easy to pass the test. But you have to tell why.
         // <--start
-        final Optional<Boolean> areSame = Optional.empty();
+        final Optional<Boolean> areSame = Optional.of(false);
         // --end-->
+
+        /*
+         * Spacing at the end will be kept
+         * so the statement is false
+         */
 
         assertEquals("Part one. Part two.", originalString);
         assertEquals(areSame.get(), originalString == copyOfOriginalString);
@@ -67,7 +80,7 @@ class StringTest {
 
         // TODO: Take part of the original string according to expectation.
         // <--start
-        final String partOfString = null;
+        final String partOfString = originalString.substring(5);
         // --end-->
 
         final String expectedString = "is great";
@@ -82,7 +95,8 @@ class StringTest {
 
         // TODO: Take part of the original string according to expectation.
         // <--start
-        final String partOfString = null;
+
+        final String partOfString = originalString.substring(5,7);
         // --end-->
 
         final String expectedString = "is";
@@ -105,7 +119,7 @@ class StringTest {
 
         // TODO: Extract words in the sentence.
         // <--Start
-        String[] words = null;
+        String[] words = sentence.split(" ", 3);
         // --End-->
 
         assertArrayEquals(new String[] {"This", "is", "Mike"}, words);
@@ -118,7 +132,7 @@ class StringTest {
 
         // TODO: Extract words in the sentence.
         // <--Start
-        String[] words = null;
+        String[] words = sentence.split("/", 3);
         // --End-->
 
         assertArrayEquals(new String[] {"This", "is", "Mike"}, words);
@@ -132,7 +146,7 @@ class StringTest {
 
         // TODO: Create string using StringBuilder
         // <--Start
-        StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder("|---|\n"+ "|   |\n"+ "|---|\n");
         // --End-->
 
         final String expected =
@@ -179,7 +193,7 @@ class StringTest {
 
         // TODO: Modify the following code to create new string from original String
         // <--Start
-        final String reversed = null;
+        final String reversed = new StringBuilder(original).reverse().toString();
         // --End-->
 
         assertEquals("654321", reversed);
@@ -196,8 +210,8 @@ class StringTest {
 
         // TODO: Please change the value of the following 2 lines to pass the test.
         // <--start
-        Optional<Boolean> actualResultOfEqual = Optional.empty();
-        Optional<Boolean> actualResultOfEqualIgnoreCase = Optional.empty();
+        Optional<Boolean> actualResultOfEqual = Optional.of(false);
+        Optional<Boolean> actualResultOfEqualIgnoreCase = Optional.of(true);
         // --end-->
 
         assertEquals(equalResult, actualResultOfEqual);
@@ -213,8 +227,9 @@ class StringTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        final String expectedText = null;
-        // --end-->
+        /*final String expectedText = null;*/
+        final String expectedText = String.format("Hello, %s. Next year, you will be %d.", name, age);
+                // --end-->
 
         assertEquals(expectedText, text);
     }
