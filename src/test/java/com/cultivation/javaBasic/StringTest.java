@@ -165,6 +165,14 @@ class StringTest {
         int sum = 0;
         // TODO: Write some code to calculate the checksum of the string. The checksum is the sum of each string char.
         // <--Start
+
+        char[] charArray = text.toCharArray();
+        for (int i=0; i<charArray.length; i++){
+            char c = charArray[i]; // c='A'
+            int ascii = (int)c;
+            sum += ascii;
+        }
+
         // --End-->
 
         assertEquals(3655, sum);
@@ -180,7 +188,8 @@ class StringTest {
         // こ - U+3053
         // れ - U+308c
         // <--Start
-        final String actual = null;
+        final String actual = "\u306a\u306b\u3053\u308c";
+
         // --End-->
 
         assertEquals(expected, actual);
